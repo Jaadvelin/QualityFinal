@@ -28,11 +28,25 @@ public class LogInLogOutStepDefs {
         driver.get("http://the-internet.herokuapp.com/login");
 	}
 	
+	@Given("the user is already logged in")
+	public void the_user_is_already_logged_in() {
+        String basePath = new File("").getAbsolutePath();
+		System.setProperty("webdriver.chrome.driver", basePath + "\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        driver.get("http://the-internet.herokuapp.com/login");
+        driver.findElement(By.id("username")).sendKeys("tomsmith");
+	    driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	}
+	
 	@When("she fills in {string} with {string}")
 	public void she_fills_in_with(String inputId, String inputValue) {
 	    // Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.id("username")).sendKeys("tomsmith");
 	    driver.findElement(By.id("password")).sendKeys("wrong");
+	    WebElement button = driver.findElement(By.className("radius"));
+        	button.click();
 	    throw new io.cucumber.java.PendingException();
 	}
 
@@ -40,6 +54,14 @@ public class LogInLogOutStepDefs {
 	public void she_presses(String buttonName) {
 	    // Write code here that turns the phrase above into concrete actions
 		 WebElement button = driver.findElement(By.className("radius"));
+	        button.click();
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	@When("the user presses {string}")
+	public void the_user_presses(String buttonName) {
+	    // Write code here that turns the phrase above into concrete actions
+		 WebElement button = driver.findElement(By.xpath("a[@href='/html/body/div[2]/div/div/a/logout']"));
 	        button.click();
 	    throw new io.cucumber.java.PendingException();
 	}
