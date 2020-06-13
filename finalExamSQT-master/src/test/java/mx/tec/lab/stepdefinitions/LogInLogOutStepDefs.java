@@ -18,7 +18,7 @@ import io.cucumber.java.en.When;
 
 public class LogInLogOutStepDefs {
     private static WebDriver driver;
-	
+			
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
         String basePath = new File("").getAbsolutePath();
@@ -31,12 +31,21 @@ public class LogInLogOutStepDefs {
 	@When("she fills in {string} with {string}")
 	public void she_fills_in_with(String inputId, String inputValue) {
 	    // Write code here that turns the phrase above into concrete actions
+		driver.findElement(By.id("username")).sendKeys("tomsmith");
+	    driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
 	    throw new io.cucumber.java.PendingException();
 	}
 
 	@When("she presses {string}")
 	public void she_presses(String buttonName) {
 	    // Write code here that turns the phrase above into concrete actions
+		 WebElement button = driver.findElement(By.className("radius"));
+	        button.click();
+		/*switch(buttonName) {
+			case "Login":
+		       
+		    
+		}*/
 	    throw new io.cucumber.java.PendingException();
 	}
 
