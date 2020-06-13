@@ -1,8 +1,8 @@
  Feature: LogIn and LogOut
  
  Scenario: Client log out
-  	Given the user is already logged in
-	When the user presses "logout"
-	Then she is on the login page
+  	Given the user accesses secure area
+	When the user is not logged in
+	Then she sees "You must login to view the secure area!"
   	
   	

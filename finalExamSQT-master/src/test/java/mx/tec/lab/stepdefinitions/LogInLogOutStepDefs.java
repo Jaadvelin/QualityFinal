@@ -40,6 +40,16 @@ public class LogInLogOutStepDefs {
 	    driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
 	}
 	
+	@Given("the user accesses secure area")
+	public void the_user_accesses_secure_area() {
+        String basePath = new File("").getAbsolutePath();
+		System.setProperty("webdriver.chrome.driver", basePath + "\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get("http://the-internet.herokuapp.com/secure");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	}
+	
 	@When("she fills in {string} with {string}")
 	public void she_fills_in_with(String inputId, String inputValue) {
 	    // Write code here that turns the phrase above into concrete actions
@@ -64,6 +74,13 @@ public class LogInLogOutStepDefs {
 		 WebElement button = driver.findElement(By.xpath("a[@href='/html/body/div[2]/div/div/a/logout']"));
 	        button.click();
 	    throw new io.cucumber.java.PendingException();
+	}
+	
+	@When("the user is not logged in")
+	public void the_user_is_not_logged_in() {
+		WebElement headerLabel = driver.findElement(By.tagName("h2"));
+		String title = headerLabel.getText();
+		assertEquals("Login Page", title);
 	}
 
 	@Then("she is on the users secure area")
