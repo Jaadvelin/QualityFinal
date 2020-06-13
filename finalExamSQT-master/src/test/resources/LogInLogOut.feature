@@ -2,7 +2,7 @@ Feature: LogIn and LogOut
  
   Scenario: Client logins with valid credentials
   	Given the user is on the login page
-  	When she fills in "username" with "tomsmith"
+  	When she fills in "username" with "tomsmith"1
   	And she fills in "password" with "SuperSecretPassword!"
   	And she presses "Login"
   	Then she is on the "users secure area"
@@ -10,7 +10,7 @@ Feature: LogIn and LogOut
   	
   Scenario: Client logins with invalid credentials
   	Given the user is on the login page
-  	When she fills in "username" with "tomsmith"
+  	When she fills in "username" with "tomsmith"2
   	And she fills in "password" with "wrong"
   	And she presses "Login"
   	Then she is on the "login page"
