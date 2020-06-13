@@ -32,7 +32,7 @@ public class LogInLogOutStepDefs {
 	public void she_fills_in_with(String inputId, String inputValue) {
 	    // Write code here that turns the phrase above into concrete actions
 		driver.findElement(By.id("username")).sendKeys("tomsmith");
-	    driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	    driver.findElement(By.id("password")).sendKeys("wrong");
 	    throw new io.cucumber.java.PendingException();
 	}
 
@@ -41,11 +41,6 @@ public class LogInLogOutStepDefs {
 	    // Write code here that turns the phrase above into concrete actions
 		 WebElement button = driver.findElement(By.className("radius"));
 	        button.click();
-		/*switch(buttonName) {
-			case "Login":
-		       
-		    
-		}*/
 	    throw new io.cucumber.java.PendingException();
 	}
 
@@ -54,6 +49,13 @@ public class LogInLogOutStepDefs {
 		WebElement headerLabel = driver.findElement(By.tagName("h2"));
 		String title = headerLabel.getText();
 		assertEquals("Secure Area", title);
+	}
+	
+	@Then("she is on the login screen")
+	public void she_is_on_the_login_page() {
+		WebElement headerLabel = driver.findElement(By.tagName("h2"));
+		String title = headerLabel.getText();
+		assertEquals("Login Page", title);
 	}
 
 	@Then("she sees {string}")
